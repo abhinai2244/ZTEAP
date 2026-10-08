@@ -1,0 +1,835 @@
+{
+  "createdAt": "2026-10-08T06:03:39.776Z",
+  "project": "ZTEAP",
+  "boardId": 36,
+  "epics": {
+    "PHASE-01": "ZTEAP-13",
+    "PHASE-02": "ZTEAP-14",
+    "PHASE-03": "ZTEAP-15",
+    "PHASE-04": "ZTEAP-16",
+    "PHASE-05": "ZTEAP-17",
+    "PHASE-06": "ZTEAP-18",
+    "PHASE-07": "ZTEAP-19",
+    "PHASE-08": "ZTEAP-20",
+    "PHASE-09": "ZTEAP-21",
+    "PHASE-10": "ZTEAP-22",
+    "PHASE-11": "ZTEAP-23",
+    "PHASE-12": "ZTEAP-24",
+    "PHASE-13": "ZTEAP-25",
+    "PHASE-14": "ZTEAP-26",
+    "PHASE-15": "ZTEAP-27",
+    "PHASE-16": "ZTEAP-28"
+  },
+  "issues": [
+    {
+      "key": "ZTEAP-13",
+      "type": "Epic",
+      "summary": "PHASE-01: Agile Process and Development Approach",
+      "parent": null,
+      "priority": "Highest",
+      "points": null
+    },
+    {
+      "key": "ZTEAP-14",
+      "type": "Epic",
+      "summary": "PHASE-02: Requirements Engineering and SRS",
+      "parent": null,
+      "priority": "Highest",
+      "points": null
+    },
+    {
+      "key": "ZTEAP-15",
+      "type": "Epic",
+      "summary": "PHASE-03: Requirements Analysis and UML",
+      "parent": null,
+      "priority": "Highest",
+      "points": null
+    },
+    {
+      "key": "ZTEAP-16",
+      "type": "Epic",
+      "summary": "PHASE-04: Data and Information Flow Modeling",
+      "parent": null,
+      "priority": "Highest",
+      "points": null
+    },
+    {
+      "key": "ZTEAP-17",
+      "type": "Epic",
+      "summary": "PHASE-05: Software Architecture and Design Engineering",
+      "parent": null,
+      "priority": "Highest",
+      "points": null
+    },
+    {
+      "key": "ZTEAP-18",
+      "type": "Epic",
+      "summary": "PHASE-06: User Interface Design",
+      "parent": null,
+      "priority": "Highest",
+      "points": null
+    },
+    {
+      "key": "ZTEAP-19",
+      "type": "Epic",
+      "summary": "PHASE-07: Threat Modeling and Security Analysis",
+      "parent": null,
+      "priority": "Highest",
+      "points": null
+    },
+    {
+      "key": "ZTEAP-20",
+      "type": "Epic",
+      "summary": "PHASE-08: Attack Tree and Security Architecture Refinement",
+      "parent": null,
+      "priority": "Highest",
+      "points": null
+    },
+    {
+      "key": "ZTEAP-21",
+      "type": "Epic",
+      "summary": "PHASE-09: Product Backlog and Jira Scrum Planning",
+      "parent": null,
+      "priority": "Highest",
+      "points": null
+    },
+    {
+      "key": "ZTEAP-22",
+      "type": "Epic",
+      "summary": "PHASE-10: Sprint Execution and Scrum Metrics",
+      "parent": null,
+      "priority": "Highest",
+      "points": null
+    },
+    {
+      "key": "ZTEAP-23",
+      "type": "Epic",
+      "summary": "PHASE-11: Secure Development and Build Environment",
+      "parent": null,
+      "priority": "Highest",
+      "points": null
+    },
+    {
+      "key": "ZTEAP-24",
+      "type": "Epic",
+      "summary": "PHASE-12: Secure Coding and Refactoring",
+      "parent": null,
+      "priority": "Highest",
+      "points": null
+    },
+    {
+      "key": "ZTEAP-25",
+      "type": "Epic",
+      "summary": "PHASE-13: Containerized Development with Docker and Kubernetes",
+      "parent": null,
+      "priority": "Highest",
+      "points": null
+    },
+    {
+      "key": "ZTEAP-26",
+      "type": "Epic",
+      "summary": "PHASE-14: CI CD and Security Testing",
+      "parent": null,
+      "priority": "Highest",
+      "points": null
+    },
+    {
+      "key": "ZTEAP-27",
+      "type": "Epic",
+      "summary": "PHASE-15: Logging Monitoring Hardening and Secure Deployment",
+      "parent": null,
+      "priority": "Highest",
+      "points": null
+    },
+    {
+      "key": "ZTEAP-28",
+      "type": "Epic",
+      "summary": "PHASE-16: Final Security Review and Report",
+      "parent": null,
+      "priority": "High",
+      "points": null
+    },
+    {
+      "key": "ZTEAP-29",
+      "type": "Task",
+      "summary": "Select Scrum with XP practices and justify the approach",
+      "parent": "ZTEAP-13",
+      "priority": "High",
+      "points": null
+    },
+    {
+      "key": "ZTEAP-30",
+      "type": "Task",
+      "summary": "Map Agile Manifesto principles to ZTAP",
+      "parent": "ZTEAP-13",
+      "priority": "Medium",
+      "points": null
+    },
+    {
+      "key": "ZTEAP-31",
+      "type": "Task",
+      "summary": "Document refactoring evidence and Agile security risks",
+      "parent": "ZTEAP-13",
+      "priority": "High",
+      "points": null
+    },
+    {
+      "key": "ZTEAP-32",
+      "type": "Task",
+      "summary": "Define stakeholders and zero-trust user classes",
+      "parent": "ZTEAP-14",
+      "priority": "High",
+      "points": null
+    },
+    {
+      "key": "ZTEAP-33",
+      "type": "Task",
+      "summary": "Specify functional nonfunctional and security requirements",
+      "parent": "ZTEAP-14",
+      "priority": "Highest",
+      "points": null
+    },
+    {
+      "key": "ZTEAP-34",
+      "type": "Task",
+      "summary": "Baseline and prioritize the SRS",
+      "parent": "ZTEAP-14",
+      "priority": "High",
+      "points": null
+    },
+    {
+      "key": "ZTEAP-35",
+      "type": "Task",
+      "summary": "Develop the UML use-case model",
+      "parent": "ZTEAP-15",
+      "priority": "High",
+      "points": null
+    },
+    {
+      "key": "ZTEAP-36",
+      "type": "Story",
+      "summary": "As an employee I want a specified access-request flow so that exceptional paths are understood",
+      "parent": "ZTEAP-15",
+      "priority": "High",
+      "points": null
+    },
+    {
+      "key": "ZTEAP-37",
+      "type": "Story",
+      "summary": "As a resource owner I want a specified approval flow so that decisions remain controlled",
+      "parent": "ZTEAP-15",
+      "priority": "High",
+      "points": null
+    },
+    {
+      "key": "ZTEAP-38",
+      "type": "Task",
+      "summary": "Create the scenario analysis model for requesting enterprise access",
+      "parent": "ZTEAP-15",
+      "priority": "Medium",
+      "points": null
+    },
+    {
+      "key": "ZTEAP-39",
+      "type": "Task",
+      "summary": "Create the entity relationship model",
+      "parent": "ZTEAP-16",
+      "priority": "High",
+      "points": null
+    },
+    {
+      "key": "ZTEAP-40",
+      "type": "Task",
+      "summary": "Create Level 0 and Level 1 data-flow diagrams",
+      "parent": "ZTEAP-16",
+      "priority": "High",
+      "points": null
+    },
+    {
+      "key": "ZTEAP-41",
+      "type": "Task",
+      "summary": "Validate trust boundaries and model consistency",
+      "parent": "ZTEAP-16",
+      "priority": "High",
+      "points": null
+    },
+    {
+      "key": "ZTEAP-42",
+      "type": "Task",
+      "summary": "Define and justify the layered zero-trust architecture",
+      "parent": "ZTEAP-17",
+      "priority": "Highest",
+      "points": null
+    },
+    {
+      "key": "ZTEAP-43",
+      "type": "Task",
+      "summary": "Specify components responsibilities and interfaces",
+      "parent": "ZTEAP-17",
+      "priority": "High",
+      "points": null
+    },
+    {
+      "key": "ZTEAP-44",
+      "type": "Task",
+      "summary": "Apply design concepts and security patterns",
+      "parent": "ZTEAP-17",
+      "priority": "High",
+      "points": null
+    },
+    {
+      "key": "ZTEAP-45",
+      "type": "Story",
+      "summary": "As a user I want a secure login screen so that I can enter the correct role workspace",
+      "parent": "ZTEAP-18",
+      "priority": "High",
+      "points": null
+    },
+    {
+      "key": "ZTEAP-46",
+      "type": "Story",
+      "summary": "As an employee I want an access dashboard so that I can request and inspect access",
+      "parent": "ZTEAP-18",
+      "priority": "High",
+      "points": null
+    },
+    {
+      "key": "ZTEAP-47",
+      "type": "Story",
+      "summary": "As a resource owner I want an approval screen so that I can control my applications",
+      "parent": "ZTEAP-18",
+      "priority": "High",
+      "points": null
+    },
+    {
+      "key": "ZTEAP-48",
+      "type": "Story",
+      "summary": "As an administrator or auditor I want role-specific monitoring screens so that I can govern and review the system",
+      "parent": "ZTEAP-18",
+      "priority": "High",
+      "points": null
+    },
+    {
+      "key": "ZTEAP-49",
+      "type": "Task",
+      "summary": "Classify assets against confidentiality integrity and availability",
+      "parent": "ZTEAP-19",
+      "priority": "Highest",
+      "points": null
+    },
+    {
+      "key": "ZTEAP-50",
+      "type": "Task",
+      "summary": "Apply STRIDE to data-flow elements",
+      "parent": "ZTEAP-19",
+      "priority": "Highest",
+      "points": null
+    },
+    {
+      "key": "ZTEAP-51",
+      "type": "Task",
+      "summary": "Analyze sensitive information flows",
+      "parent": "ZTEAP-19",
+      "priority": "High",
+      "points": null
+    },
+    {
+      "key": "ZTEAP-52",
+      "type": "Task",
+      "summary": "Document vulnerabilities and mitigations",
+      "parent": "ZTEAP-19",
+      "priority": "Highest",
+      "points": null
+    },
+    {
+      "key": "ZTEAP-53",
+      "type": "Task",
+      "summary": "Construct the critical access-compromise attack tree",
+      "parent": "ZTEAP-20",
+      "priority": "Highest",
+      "points": null
+    },
+    {
+      "key": "ZTEAP-54",
+      "type": "Task",
+      "summary": "Map preventive and detective controls to attack paths",
+      "parent": "ZTEAP-20",
+      "priority": "High",
+      "points": null
+    },
+    {
+      "key": "ZTEAP-55",
+      "type": "Task",
+      "summary": "Refine the architecture for the highest-risk threats",
+      "parent": "ZTEAP-20",
+      "priority": "High",
+      "points": null
+    },
+    {
+      "key": "ZTEAP-56",
+      "type": "Task",
+      "summary": "Define repository and branch workflow controls",
+      "parent": "ZTEAP-23",
+      "priority": "High",
+      "points": null
+    },
+    {
+      "key": "ZTEAP-57",
+      "type": "Task",
+      "summary": "Verify secret and dependency management",
+      "parent": "ZTEAP-23",
+      "priority": "Highest",
+      "points": null
+    },
+    {
+      "key": "ZTEAP-58",
+      "type": "Task",
+      "summary": "Run automated static and security checks",
+      "parent": "ZTEAP-23",
+      "priority": "High",
+      "points": null
+    },
+    {
+      "key": "ZTEAP-59",
+      "type": "Task",
+      "summary": "Document reproducible build and artifact integrity controls",
+      "parent": "ZTEAP-23",
+      "priority": "Medium",
+      "points": null
+    },
+    {
+      "key": "ZTEAP-60",
+      "type": "Task",
+      "summary": "Implement authentication and authorization modules",
+      "parent": "ZTEAP-24",
+      "priority": "Highest",
+      "points": null
+    },
+    {
+      "key": "ZTEAP-61",
+      "type": "Task",
+      "summary": "Apply runtime input validation and safe errors",
+      "parent": "ZTEAP-24",
+      "priority": "Highest",
+      "points": null
+    },
+    {
+      "key": "ZTEAP-62",
+      "type": "Task",
+      "summary": "Refactor database-client and build integration defects",
+      "parent": "ZTEAP-24",
+      "priority": "High",
+      "points": null
+    },
+    {
+      "key": "ZTEAP-63",
+      "type": "Task",
+      "summary": "Verify sensitive-data handling",
+      "parent": "ZTEAP-24",
+      "priority": "Highest",
+      "points": null
+    },
+    {
+      "key": "ZTEAP-64",
+      "type": "Task",
+      "summary": "Create the secure multi-stage Docker image",
+      "parent": "ZTEAP-25",
+      "priority": "High",
+      "points": null
+    },
+    {
+      "key": "ZTEAP-65",
+      "type": "Task",
+      "summary": "Configure Docker Compose application and database",
+      "parent": "ZTEAP-25",
+      "priority": "High",
+      "points": null
+    },
+    {
+      "key": "ZTEAP-66",
+      "type": "Task",
+      "summary": "Define Kubernetes deployment service and namespace",
+      "parent": "ZTEAP-25",
+      "priority": "High",
+      "points": null
+    },
+    {
+      "key": "ZTEAP-67",
+      "type": "Task",
+      "summary": "Capture live container and Minikube deployment evidence",
+      "parent": "ZTEAP-25",
+      "priority": "High",
+      "points": null
+    },
+    {
+      "key": "ZTEAP-68",
+      "type": "Task",
+      "summary": "Define the CI CD security pipeline",
+      "parent": "ZTEAP-26",
+      "priority": "High",
+      "points": null
+    },
+    {
+      "key": "ZTEAP-69",
+      "type": "Task",
+      "summary": "Execute unit tests for password policy and risk evaluation",
+      "parent": "ZTEAP-26",
+      "priority": "High",
+      "points": null
+    },
+    {
+      "key": "ZTEAP-70",
+      "type": "Task",
+      "summary": "Execute RBAC integration testing",
+      "parent": "ZTEAP-26",
+      "priority": "Highest",
+      "points": null
+    },
+    {
+      "key": "ZTEAP-71",
+      "type": "Task",
+      "summary": "Execute end-to-end authentication validation",
+      "parent": "ZTEAP-26",
+      "priority": "High",
+      "points": null
+    },
+    {
+      "key": "ZTEAP-72",
+      "type": "Task",
+      "summary": "Execute input fuzzing and defect retest",
+      "parent": "ZTEAP-26",
+      "priority": "Highest",
+      "points": null
+    },
+    {
+      "key": "ZTEAP-73",
+      "type": "Task",
+      "summary": "Define security event logging coverage",
+      "parent": "ZTEAP-27",
+      "priority": "Highest",
+      "points": null
+    },
+    {
+      "key": "ZTEAP-74",
+      "type": "Task",
+      "summary": "Define monitoring metrics and alerts",
+      "parent": "ZTEAP-27",
+      "priority": "High",
+      "points": null
+    },
+    {
+      "key": "ZTEAP-75",
+      "type": "Task",
+      "summary": "Prepare the target hardening checklist",
+      "parent": "ZTEAP-27",
+      "priority": "Highest",
+      "points": null
+    },
+    {
+      "key": "ZTEAP-76",
+      "type": "Task",
+      "summary": "Prepare physical operational and deployment controls",
+      "parent": "ZTEAP-27",
+      "priority": "High",
+      "points": null
+    },
+    {
+      "key": "ZTEAP-77",
+      "type": "Task",
+      "summary": "Complete critical requirement traceability",
+      "parent": "ZTEAP-28",
+      "priority": "Highest",
+      "points": null
+    },
+    {
+      "key": "ZTEAP-78",
+      "type": "Task",
+      "summary": "Summarize the three highest risks and controls",
+      "parent": "ZTEAP-28",
+      "priority": "Highest",
+      "points": null
+    },
+    {
+      "key": "ZTEAP-79",
+      "type": "Task",
+      "summary": "Compile the final assessed project report",
+      "parent": "ZTEAP-28",
+      "priority": "High",
+      "points": null
+    },
+    {
+      "key": "ZTEAP-80",
+      "type": "Story",
+      "summary": "US-01: As an employee I want to log in securely so that only authenticated users reach the portal",
+      "parent": "ZTEAP-21",
+      "priority": "Highest",
+      "points": 5
+    },
+    {
+      "key": "ZTEAP-81",
+      "type": "Subtask",
+      "summary": "Verify US-01 acceptance criteria and capture evidence",
+      "parent": "ZTEAP-80",
+      "priority": "High",
+      "points": null
+    },
+    {
+      "key": "ZTEAP-82",
+      "type": "Story",
+      "summary": "US-02: As a user I want to terminate my session so that an unattended browser cannot retain access",
+      "parent": "ZTEAP-21",
+      "priority": "High",
+      "points": 2
+    },
+    {
+      "key": "ZTEAP-83",
+      "type": "Subtask",
+      "summary": "Verify US-02 acceptance criteria and capture evidence",
+      "parent": "ZTEAP-82",
+      "priority": "High",
+      "points": null
+    },
+    {
+      "key": "ZTEAP-84",
+      "type": "Story",
+      "summary": "US-03: As a security administrator I want to govern users and roles so that least privilege is maintained",
+      "parent": "ZTEAP-21",
+      "priority": "Highest",
+      "points": 5
+    },
+    {
+      "key": "ZTEAP-85",
+      "type": "Subtask",
+      "summary": "Verify US-03 acceptance criteria and capture evidence",
+      "parent": "ZTEAP-84",
+      "priority": "High",
+      "points": null
+    },
+    {
+      "key": "ZTEAP-86",
+      "type": "Story",
+      "summary": "US-04: As an employee I want to register a device so that access decisions include endpoint context",
+      "parent": "ZTEAP-21",
+      "priority": "High",
+      "points": 3
+    },
+    {
+      "key": "ZTEAP-87",
+      "type": "Subtask",
+      "summary": "Verify US-04 acceptance criteria and capture evidence",
+      "parent": "ZTEAP-86",
+      "priority": "High",
+      "points": null
+    },
+    {
+      "key": "ZTEAP-88",
+      "type": "Story",
+      "summary": "US-05: As a security administrator I want to control device posture so that compromised endpoints are denied",
+      "parent": "ZTEAP-21",
+      "priority": "Highest",
+      "points": 5
+    },
+    {
+      "key": "ZTEAP-89",
+      "type": "Subtask",
+      "summary": "Verify US-05 acceptance criteria and capture evidence",
+      "parent": "ZTEAP-88",
+      "priority": "High",
+      "points": null
+    },
+    {
+      "key": "ZTEAP-90",
+      "type": "Story",
+      "summary": "US-06: As a resource owner I want to manage protected applications and policies so that access rules match business risk",
+      "parent": "ZTEAP-21",
+      "priority": "High",
+      "points": 5
+    },
+    {
+      "key": "ZTEAP-91",
+      "type": "Subtask",
+      "summary": "Verify US-06 acceptance criteria and capture evidence",
+      "parent": "ZTEAP-90",
+      "priority": "High",
+      "points": null
+    },
+    {
+      "key": "ZTEAP-92",
+      "type": "Story",
+      "summary": "US-07: As an employee I want to request access to an internal application so that I can perform authorized work",
+      "parent": "ZTEAP-21",
+      "priority": "Highest",
+      "points": 5
+    },
+    {
+      "key": "ZTEAP-93",
+      "type": "Subtask",
+      "summary": "Verify US-07 acceptance criteria and capture evidence",
+      "parent": "ZTEAP-92",
+      "priority": "High",
+      "points": null
+    },
+    {
+      "key": "ZTEAP-94",
+      "type": "Story",
+      "summary": "US-08: As the security system I want to evaluate every access request so that no request is trusted by network location alone",
+      "parent": "ZTEAP-21",
+      "priority": "Highest",
+      "points": 8
+    },
+    {
+      "key": "ZTEAP-95",
+      "type": "Subtask",
+      "summary": "Verify US-08 acceptance criteria and capture evidence",
+      "parent": "ZTEAP-94",
+      "priority": "High",
+      "points": null
+    },
+    {
+      "key": "ZTEAP-96",
+      "type": "Story",
+      "summary": "US-09: As an auditor I want explainable risk scores so that access decisions can be reviewed",
+      "parent": "ZTEAP-21",
+      "priority": "High",
+      "points": 5
+    },
+    {
+      "key": "ZTEAP-97",
+      "type": "Subtask",
+      "summary": "Verify US-09 acceptance criteria and capture evidence",
+      "parent": "ZTEAP-96",
+      "priority": "High",
+      "points": null
+    },
+    {
+      "key": "ZTEAP-98",
+      "type": "Story",
+      "summary": "US-10: As a resource owner I want to approve or reject pending requests so that I remain accountable for my applications",
+      "parent": "ZTEAP-21",
+      "priority": "Highest",
+      "points": 5
+    },
+    {
+      "key": "ZTEAP-99",
+      "type": "Subtask",
+      "summary": "Verify US-10 acceptance criteria and capture evidence",
+      "parent": "ZTEAP-98",
+      "priority": "High",
+      "points": null
+    },
+    {
+      "key": "ZTEAP-100",
+      "type": "Story",
+      "summary": "US-11: As an auditor I want searchable and exportable security logs so that compliance evidence is available",
+      "parent": "ZTEAP-21",
+      "priority": "High",
+      "points": 5
+    },
+    {
+      "key": "ZTEAP-101",
+      "type": "Subtask",
+      "summary": "Verify US-11 acceptance criteria and capture evidence",
+      "parent": "ZTEAP-100",
+      "priority": "High",
+      "points": null
+    },
+    {
+      "key": "ZTEAP-102",
+      "type": "Story",
+      "summary": "US-12: As a role-based user I want a focused dashboard so that I can see the work and evidence relevant to me",
+      "parent": "ZTEAP-21",
+      "priority": "Medium",
+      "points": 3
+    },
+    {
+      "key": "ZTEAP-103",
+      "type": "Subtask",
+      "summary": "Verify US-12 acceptance criteria and capture evidence",
+      "parent": "ZTEAP-102",
+      "priority": "High",
+      "points": null
+    },
+    {
+      "key": "ZTEAP-104",
+      "type": "Task",
+      "summary": "Review priorities estimates dependencies and Definition of Done",
+      "parent": "ZTEAP-21",
+      "priority": "High",
+      "points": null
+    },
+    {
+      "key": "ZTEAP-105",
+      "type": "Task",
+      "summary": "Configure the Scrum board workflow as To Do In Progress Testing Done",
+      "parent": "ZTEAP-22",
+      "priority": "Highest",
+      "points": null
+    },
+    {
+      "key": "ZTEAP-106",
+      "type": "Task",
+      "summary": "Record Daily Scrum progress plan and blockers",
+      "parent": "ZTEAP-22",
+      "priority": "High",
+      "points": null
+    },
+    {
+      "key": "ZTEAP-107",
+      "type": "Task",
+      "summary": "Prepare Sprint 1 and Sprint 2 burndown evidence",
+      "parent": "ZTEAP-22",
+      "priority": "High",
+      "points": null
+    },
+    {
+      "key": "ZTEAP-108",
+      "type": "Task",
+      "summary": "Calculate velocity defects and carry-over",
+      "parent": "ZTEAP-22",
+      "priority": "High",
+      "points": null
+    },
+    {
+      "key": "ZTEAP-109",
+      "type": "Task",
+      "summary": "Document Sprint Reviews and stakeholder outcomes",
+      "parent": "ZTEAP-22",
+      "priority": "Medium",
+      "points": null
+    },
+    {
+      "key": "ZTEAP-110",
+      "type": "Task",
+      "summary": "Document Sprint Retrospectives and improvement actions",
+      "parent": "ZTEAP-22",
+      "priority": "Medium",
+      "points": null
+    },
+    {
+      "key": "ZTEAP-111",
+      "type": "Bug",
+      "summary": "DEF-01: Fix Prisma client export mismatch",
+      "parent": "ZTEAP-22",
+      "priority": "High",
+      "points": null
+    },
+    {
+      "key": "ZTEAP-112",
+      "type": "Bug",
+      "summary": "DEF-02: Fix rate-limiter iterator compilation",
+      "parent": "ZTEAP-22",
+      "priority": "High",
+      "points": null
+    },
+    {
+      "key": "ZTEAP-113",
+      "type": "Bug",
+      "summary": "DEF-03: Fix dashboard JSX quote and security lint compatibility",
+      "parent": "ZTEAP-22",
+      "priority": "High",
+      "points": null
+    }
+  ],
+  "warnings": [],
+  "storyPointField": "customfield_10016"
+}

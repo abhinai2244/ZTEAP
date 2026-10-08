@@ -1,0 +1,63 @@
+version: '3.8'
+
+services:
+  # ============================================================
+  # PostgreSQL Database (Internal Network Only)
+  # ============================================================
+  postgres:
+    image: postgres:16-alpine
+    container_name: ztap-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-ztap_user}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-ztap_secure_password_2024}
+      POSTGRES_DB: ${POSTGRES_DB:-ztap_db}
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - ztap-internal-net
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-ztap_user} -d ${POSTGRES_DB:-ztap_db}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    ports:
+      - "5432:5432"
+
+  # ============================================================
+  # ZTAP Application Server
+  # ============================================================
+  ztap-app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: ztap-portal
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+    environment:
+      DATABASE_URL: postgresql://${POSTGRES_USER:-ztap_user}:${POSTGRES_PASSWORD:-ztap_secure_password_2024}@postgres:5432/${POSTGRES_DB:-ztap_db}?schema=public
+      SESSION_SECRET: ${SESSION_SECRET:-a_very_secure_random_32_character_string_ztap}
+      NODE_ENV: production
+      ACCOUNT_LOCKOUT_THRESHOLD: 5
+      ACCOUNT_LOCKOUT_DURATION_MINUTES: 15
+      LOGIN_RATE_LIMIT_MAX: 5
+      LOGIN_RATE_LIMIT_WINDOW_MS: 900000
+    depends_on:
+      postgres:
+        condition: service_healthy
+    networks:
+      - ztap-internal-net
+    healthcheck:
+      test: ["CMD", "wget", "-q", "--spider", "http://localhost:3000/api/auth/me"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+
+volumes:
+  postgres_data:
+    driver: local
+
+networks:
+  ztap-internal-net:
+    driver: bridge

@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: ztap-config
+  namespace: ztap-system
+data:
+  NODE_ENV: "production"
+  PORT: "3000"
+  RATE_LIMIT_MAX: "100"
+  RATE_LIMIT_WINDOW_MS: "900000"
+  LOGIN_RATE_LIMIT_MAX: "5"
+  LOGIN_RATE_LIMIT_WINDOW_MS: "900000"
+  ACCOUNT_LOCKOUT_THRESHOLD: "5"
+  ACCOUNT_LOCKOUT_DURATION_MINUTES: "15"

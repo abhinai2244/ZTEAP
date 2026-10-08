@@ -1,0 +1,59 @@
+/**
+ * Audit Logging Types
+ */
+
+import { AuditSeverity } from '@prisma/client';
+
+export interface AuditEvent {
+  actorId?: string;
+  actorEmail?: string;
+  action: string;
+  resource?: string;
+  resourceId?: string;
+  ipAddress?: string;
+  result: string;
+  severity: AuditSeverity;
+  correlationId?: string;
+  metadata?: Record<string, unknown>;
+}
+
+/** Standard audit actions */
+export const AuditActions = {
+  // Authentication
+  LOGIN_SUCCESS: 'LOGIN_SUCCESS',
+  LOGIN_FAILURE: 'LOGIN_FAILURE',
+  LOGOUT: 'LOGOUT',
+  PASSWORD_CHANGE: 'PASSWORD_CHANGE',
+  ACCOUNT_LOCKED: 'ACCOUNT_LOCKED',
+  // User Management
+  USER_CREATED: 'USER_CREATED',
+  USER_UPDATED: 'USER_UPDATED',
+  USER_DISABLED: 'USER_DISABLED',
+  // Role Management
+  ROLE_ASSIGNED: 'ROLE_ASSIGNED',
+  ROLE_REVOKED: 'ROLE_REVOKED',
+  PRIVILEGE_ESCALATION_ATTEMPT: 'PRIVILEGE_ESCALATION_ATTEMPT',
+  // Resource Management
+  RESOURCE_CREATED: 'RESOURCE_CREATED',
+  RESOURCE_UPDATED: 'RESOURCE_UPDATED',
+  RESOURCE_DELETED: 'RESOURCE_DELETED',
+  // Access
+  ACCESS_REQUESTED: 'ACCESS_REQUESTED',
+  ACCESS_ALLOWED: 'ACCESS_ALLOWED',
+  ACCESS_DENIED: 'ACCESS_DENIED',
+  ACCESS_STEP_UP: 'ACCESS_STEP_UP_REQUIRED',
+  ACCESS_APPROVAL_REQUIRED: 'ACCESS_APPROVAL_REQUIRED',
+  // Approval
+  REQUEST_APPROVED: 'REQUEST_APPROVED',
+  REQUEST_REJECTED: 'REQUEST_REJECTED',
+  SELF_APPROVAL_ATTEMPT: 'SELF_APPROVAL_ATTEMPT',
+  // Device
+  DEVICE_REGISTERED: 'DEVICE_REGISTERED',
+  DEVICE_STATUS_CHANGED: 'DEVICE_STATUS_CHANGED',
+  // Policy
+  POLICY_CREATED: 'POLICY_CREATED',
+  POLICY_UPDATED: 'POLICY_UPDATED',
+  POLICY_DELETED: 'POLICY_DELETED',
+  // Security
+  SUSPICIOUS_ACTIVITY: 'SUSPICIOUS_ACTIVITY',
+} as const;

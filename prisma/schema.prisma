@@ -1,0 +1,294 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum UserStatus {
+  ACTIVE
+  INACTIVE
+  LOCKED
+}
+
+enum RoleName {
+  EMPLOYEE
+  RESOURCE_OWNER
+  SECURITY_ADMIN
+  AUDITOR
+  SYSTEM_ADMIN
+}
+
+enum DeviceStatus {
+  TRUSTED
+  COMPLIANT
+  UNTRUSTED
+  COMPROMISED
+}
+
+enum SensitivityLevel {
+  PUBLIC
+  INTERNAL
+  CONFIDENTIAL
+  RESTRICTED
+  CRITICAL
+}
+
+enum RiskLevel {
+  LOW
+  MEDIUM
+  HIGH
+  CRITICAL
+}
+
+enum AccessDecisionType {
+  ALLOW
+  DENY
+  STEP_UP_AUTHENTICATION
+  REQUIRE_APPROVAL
+}
+
+enum AccessRequestStatus {
+  PENDING
+  APPROVED
+  DENIED
+  STEP_UP_REQUIRED
+  CANCELLED
+}
+
+enum ApprovalAction {
+  APPROVED
+  REJECTED
+  ADDITIONAL_AUTH_REQUIRED
+}
+
+enum AuditSeverity {
+  INFO
+  WARNING
+  ERROR
+  CRITICAL
+}
+
+model User {
+  id             String          @id @default(uuid())
+  email          String          @unique
+  passwordHash   String
+  firstName      String
+  lastName       String
+  status         UserStatus      @default(ACTIVE)
+  failedLogins   Int             @default(0)
+  lockedUntil    DateTime?
+  lastLoginAt    DateTime?
+  createdAt      DateTime        @default(now())
+  updatedAt      DateTime        @updatedAt
+
+  userRoles      UserRole[]
+  devices        Device[]
+  accessRequests AccessRequest[]
+  approvals      Approval[]      @relation("ApproverApprovals")
+  ownedResources Resource[]      @relation("ResourceOwner")
+  sessions       Session[]
+  auditLogs      AuditLog[]      @relation("AuditActor")
+
+  @@index([email])
+  @@index([status])
+}
+
+model Role {
+  id          String     @id @default(uuid())
+  name        RoleName   @unique
+  description String
+  level       Int        @default(0)
+  createdAt   DateTime   @default(now())
+  updatedAt   DateTime   @updatedAt
+
+  userRoles   UserRole[]
+  permissions Permission[]
+}
+
+model Permission {
+  id          String   @id @default(uuid())
+  action      String
+  resource    String
+  description String?
+  roleId      String
+  createdAt   DateTime @default(now())
+
+  role        Role     @relation(fields: [roleId], references: [id], onDelete: Cascade)
+
+  @@unique([action, resource, roleId])
+}
+
+model UserRole {
+  id         String   @id @default(uuid())
+  userId     String
+  roleId     String
+  assignedAt DateTime @default(now())
+  assignedBy String?
+
+  user       User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  role       Role     @relation(fields: [roleId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, roleId])
+}
+
+model Device {
+  id               String       @id @default(uuid())
+  userId           String
+  name             String
+  os               String?
+  browser          String?
+  status           DeviceStatus @default(UNTRUSTED)
+  isManaged        Boolean      @default(false)
+  trustScore       Int          @default(0)
+  lastSecurityCheck DateTime?
+  complianceStatus Boolean      @default(false)
+  createdAt        DateTime     @default(now())
+  updatedAt        DateTime     @updatedAt
+
+  user             User          @relation(fields: [userId], references: [id], onDelete: Cascade)
+  accessRequests   AccessRequest[]
+
+  @@index([userId])
+  @@index([status])
+}
+
+model Resource {
+  id              String           @id @default(uuid())
+  name            String           @unique
+  description     String
+  sensitivity     SensitivityLevel @default(INTERNAL)
+  ownerId         String
+  requiredRole    RoleName         @default(EMPLOYEE)
+  riskLevel       RiskLevel        @default(LOW)
+  isActive        Boolean          @default(true)
+  requiresApproval Boolean         @default(false)
+  createdAt       DateTime         @default(now())
+  updatedAt       DateTime         @updatedAt
+
+  owner           User              @relation("ResourceOwner", fields: [ownerId], references: [id])
+  policies        ResourcePolicy[]
+  accessRequests  AccessRequest[]
+
+  @@index([ownerId])
+  @@index([sensitivity])
+}
+
+model ResourcePolicy {
+  id               String    @id @default(uuid())
+  resourceId       String
+  requiredRole     RoleName?
+  maxRiskLevel     Int       @default(60)
+  allowedTimeStart String?   // HH:MM format
+  allowedTimeEnd   String?   // HH:MM format
+  allowedDays      String?   // comma-separated: MON,TUE,WED,THU,FRI
+  requiresManagedDevice Boolean @default(false)
+  isActive         Boolean   @default(true)
+  createdAt        DateTime  @default(now())
+  updatedAt        DateTime  @updatedAt
+
+  resource         Resource  @relation(fields: [resourceId], references: [id], onDelete: Cascade)
+
+  @@index([resourceId])
+}
+
+model AccessRequest {
+  id           String              @id @default(uuid())
+  userId       String
+  resourceId   String
+  deviceId     String
+  reason       String
+  status       AccessRequestStatus @default(PENDING)
+  requestedAt  DateTime            @default(now())
+  updatedAt    DateTime            @updatedAt
+
+  user         User                @relation(fields: [userId], references: [id])
+  resource     Resource            @relation(fields: [resourceId], references: [id])
+  device       Device              @relation(fields: [deviceId], references: [id])
+  decision     AccessDecision?
+  riskAssessment RiskAssessment?
+  approvals    Approval[]
+
+  @@index([userId])
+  @@index([resourceId])
+  @@index([status])
+}
+
+model AccessDecision {
+  id              String             @id @default(uuid())
+  requestId       String             @unique
+  decision        AccessDecisionType
+  decisionReason  String
+  decidedBy       String             @default("SYSTEM")
+  decidedAt       DateTime           @default(now())
+
+  request         AccessRequest      @relation(fields: [requestId], references: [id], onDelete: Cascade)
+
+  @@index([decision])
+}
+
+model RiskAssessment {
+  id           String   @id @default(uuid())
+  requestId    String   @unique
+  score        Int
+  level        RiskLevel
+  factors      Json     // Array of { factor: string, impact: number, description: string }
+  calculatedAt DateTime @default(now())
+
+  request      AccessRequest @relation(fields: [requestId], references: [id], onDelete: Cascade)
+}
+
+model Approval {
+  id          String         @id @default(uuid())
+  requestId   String
+  approverId  String
+  action      ApprovalAction
+  reason      String?
+  decidedAt   DateTime       @default(now())
+
+  request     AccessRequest  @relation(fields: [requestId], references: [id], onDelete: Cascade)
+  approver    User           @relation("ApproverApprovals", fields: [approverId], references: [id])
+
+  @@index([requestId])
+  @@index([approverId])
+}
+
+model Session {
+  id        String   @id @default(uuid())
+  userId    String
+  token     String   @unique
+  ipAddress String?
+  userAgent String?
+  expiresAt DateTime
+  createdAt DateTime @default(now())
+
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([token])
+  @@index([userId])
+}
+
+model AuditLog {
+  id            String        @id @default(uuid())
+  timestamp     DateTime      @default(now())
+  actorId       String?
+  actorEmail    String?
+  action        String
+  resource      String?
+  resourceId    String?
+  ipAddress     String?
+  result        String
+  severity      AuditSeverity @default(INFO)
+  correlationId String?
+  metadata      Json?
+
+  actor         User?         @relation("AuditActor", fields: [actorId], references: [id])
+
+  @@index([timestamp])
+  @@index([actorId])
+  @@index([action])
+  @@index([severity])
+  @@index([correlationId])
+}

@@ -1,0 +1,115 @@
+name: ZTAP DevSecOps CI/CD Pipeline
+
+on:
+  push:
+    branches: [main, develop]
+  pull_request:
+    branches: [main, develop]
+
+jobs:
+  # ------------------------------------------------------------
+  # Stage 1: Build, Lint, and Automated Tests
+  # ------------------------------------------------------------
+  test:
+    name: Lint & Security Tests
+    runs-on: ubuntu-latest
+
+    services:
+      postgres:
+        image: postgres:16-alpine
+        env:
+          POSTGRES_USER: ztap_user
+          POSTGRES_PASSWORD: ztap_secure_password_2024
+          POSTGRES_DB: ztap_test_db
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install Dependencies
+        run: npm ci
+
+      - name: Security Linting (ESLint Security)
+        run: npm run lint
+
+      - name: Generate Prisma Client
+        run: npx prisma generate
+
+      - name: Run Unit & Policy Engine Tests
+        run: npm run test
+        env:
+          DATABASE_URL: postgresql://ztap_user:ztap_secure_password_2024@localhost:5432/ztap_test_db?schema=public
+          SESSION_SECRET: ci_test_secret_key_32_characters_minimum
+
+      - name: Dependency Vulnerability Audit
+        run: npm run security:audit || true
+
+  # ------------------------------------------------------------
+  # Stage 2: Containerization & Container Image Vulnerability Scan
+  # ------------------------------------------------------------
+  container-security:
+    name: Container Build & Vulnerability Scan
+    runs-on: ubuntu-latest
+    needs: test
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Build Hardened Docker Image
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          file: ./Dockerfile
+          push: false
+          tags: ztap:latest
+          load: true
+
+      - name: Run Trivy Vulnerability Scanner on Container Image
+        uses: aquasecurity/trivy-action@master
+        with:
+          image-ref: 'ztap:latest'
+          format: 'table'
+          exit-code: '0'
+          ignore-unfixed: true
+          vuln-type: 'os,library'
+          severity: 'CRITICAL,HIGH'
+
+  # ------------------------------------------------------------
+  # Stage 3: Kubernetes Manifest Validation
+  # ------------------------------------------------------------
+  k8s-validate:
+    name: Kubernetes Manifest Lint & Dry-Run
+    runs-on: ubuntu-latest
+    needs: container-security
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Validate Kubernetes Manifests
+        run: |
+          echo "Validating k8s manifests..."
+          which kubectl || sudo apt-get update && sudo apt-get install -y kubectl
+          kubectl apply --dry-run=client -f k8s/namespace.yaml
+          kubectl apply --dry-run=client -f k8s/configmap.yaml
+          kubectl apply --dry-run=client -f k8s/secret.yaml
+          kubectl apply --dry-run=client -f k8s/deployment.yaml
+          kubectl apply --dry-run=client -f k8s/service.yaml
+          echo "All Kubernetes manifests successfully validated."
